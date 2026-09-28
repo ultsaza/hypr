@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# The personal native Lua rules are authoritative; do not replace them.
+printf '%s\n' 'Lua WindowRules are maintained manually; no files changed.'
+exit 0
 # Script to update WindowRules config if Hyprland version is >= 0.53
 
 CONFIGS_DIR="$HOME/.config/hypr/configs"
@@ -57,4 +60,3 @@ if [ "$SMALLEST" = "$REQUIRED_VER" ]; then
 else
   echo "Version $VERSION < $REQUIRED_VER. No update needed."
 fi
-

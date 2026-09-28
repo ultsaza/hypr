@@ -14,7 +14,7 @@
 # This is for changing kb_layouts. Set kb_layouts in
 
 MAP_FILE="$HOME/.cache/kb_layout_per_window"
-CFG_FILE="$HOME/.config/hypr/configs/SystemSettings.conf"
+CFG_FILE="$HOME/.config/hypr/configs/SystemSettings.lua"
 ICON="$HOME/.config/swaync/images/ja.png"
 SCRIPT_NAME="$(basename "$0")"
 LISTENER_PIDFILE="$HOME/.cache/kb_layout_per_window.listener.pid"
@@ -22,12 +22,9 @@ LISTENER_PIDFILE="$HOME/.cache/kb_layout_per_window.listener.pid"
 # Ensure map file exists
 touch "$MAP_FILE"
 
-# Read layouts from config
-if ! grep -q 'kb_layout' "$CFG_FILE"; then
-  echo "Error: cannot find kb_layout in $CFG_FILE" >&2
-  exit 1
-fi
-kb_layouts=($(grep 'kb_layout' "$CFG_FILE" | cut -d '=' -f2 | tr -d '[:space:]' | tr ',' ' '))
+# Read the effective layout, including user overrides.
+kb_layout_line=$(hyprctl getoption input:kb_layout -j | jq -er '.str | select(length > 0)') || exit 1
+IFS=',' read -r -a kb_layouts <<<"$kb_layout_line"
 count=${#kb_layouts[@]}
 
 # Get current active window ID

@@ -50,7 +50,7 @@ if wallust theme -- "${choice}"; then
     "$HOME/.config/waybar/wallust/colors-waybar.css"
     "$HOME/.config/rofi/wallust/colors-rofi.rasi"
     "$HOME/.config/kitty/kitty-themes/01-Wallust.conf"
-    "$HOME/.config/hypr/wallust/wallust-hyprland.conf"
+    "$HOME/.config/hypr/wallust/wallust-hyprland.lua"
     "$HOME/.config/ghostty/wallust.conf"
   )
 
@@ -112,7 +112,7 @@ if wallust theme -- "${choice}"; then
     fi
   fi
 
-  # Reload Hyprland so new border colors from wallust-hyprland.conf take effect
+  # Reload Hyprland so new border colors from wallust-hyprland.lua take effect
   if command -v hyprctl >/dev/null 2>&1; then
     hyprctl reload >/dev/null 2>&1 || true
   fi

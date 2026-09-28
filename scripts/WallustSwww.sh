@@ -132,5 +132,5 @@ fi
 if command -v waybar-msg >/dev/null 2>&1; then
   waybar-msg cmd reload >/dev/null 2>&1 || true
 elif pidof waybar >/dev/null; then
-  killall -SIGUSR2 waybar 2>/dev/null || true
+  pkill -SIGUSR2 -x 'waybar|\.waybar-wrapped' 2>/dev/null || true
 fi

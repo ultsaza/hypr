@@ -26,7 +26,8 @@ qt6ct_dark="$HOME/.config/qt6ct/colors/Catppuccin-Mocha.conf"
 qt6ct_light="$HOME/.config/qt6ct/colors/Catppuccin-Latte.conf"
 
 # intial kill process
-for pid in waybar rofi swaync ags swaybg; do
+pkill -SIGUSR1 -x 'waybar|\.waybar-wrapped'
+for pid in rofi swaync ags swaybg; do
     killall -SIGUSR1 "$pid"
 done
 
@@ -252,7 +253,8 @@ ${SCRIPTSDIR}/WallustSwww.sh &&
 
 sleep 2
 # kill process
-for pid1 in waybar rofi swaync ags swaybg; do
+pkill -x 'waybar|\.waybar-wrapped'
+for pid1 in rofi swaync ags swaybg; do
     killall "$pid1"
 done
 
@@ -264,4 +266,3 @@ sleep 0.5
 notify-send -u low -i "$notif" " Themes switched to:" " $next_mode Mode"
 
 exit 0
-

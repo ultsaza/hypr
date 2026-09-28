@@ -3,7 +3,7 @@
 # For Searching via web browsers
 
 # Define the path to the config file
-config_file=$HOME/.config/hypr/UserConfigs/01-UserDefaults.conf
+config_file=$HOME/.config/hypr/UserConfigs/01-UserDefaults.lua
 if ! command -v jq >/dev/null 2>&1; then
     notify-send -u low "Rofi Search" "jq is required for URL encoding. Please install jq."
     exit 1
@@ -16,10 +16,7 @@ if [[ ! -f "$config_file" ]]; then
 fi
 
 # Process the config file in memory, removing the $ and fixing spaces
-config_content=$(sed 's/\$//g' "$config_file" | sed 's/ = /=/')
-
-# Source the modified content directly from the variable
-eval "$config_content"
+Search_Engine=$(python3 "$HOME/.config/hypr/scripts/HyprSettings.py" get Search_Engine)
 
 # Check if $term is set correctly
 if [[ -z "$Search_Engine" ]]; then
@@ -44,4 +41,9 @@ if [[ -z "$query" ]]; then
 fi
 
 encoded_query=$(printf '%s' "$query" | jq -sRr @uri)
-xdg-open "${Search_Engine}${encoded_query}" >/dev/null 2>&1 &
+if [[ "$Search_Engine" == *'{}'* ]]; then
+    search_url="${Search_Engine//\{\}/$encoded_query}"
+else
+    search_url="${Search_Engine}${encoded_query}"
+fi
+xdg-open "$search_url" >/dev/null 2>&1 &
