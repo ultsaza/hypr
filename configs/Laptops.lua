@@ -1,9 +1,9 @@
--- Migrated from configs/Laptops.conf; edit this Lua file going forward.
+-- Native Lua configuration: configs/Laptops.lua.
 local v = require("variables")
 
 -- /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
 -- See https://wiki.hyprland.org/Configuring/Keywords/ for more variable settings
--- These configs are mostly for laptops. This is addemdum to Keybinds.conf
+-- These configs are mostly for laptops. This is addemdum to Keybinds.lua
 
 v.mainMod = "SUPER"
 v.scriptsDir = v.HOME .. "/.config/hypr/scripts"
@@ -30,4 +30,3 @@ hl.bind("ALT + F6", hl.dsp.exec_cmd(v.scriptsDir .. "/ScreenShot.sh --active"), 
 
 v.TOUCHPAD_ENABLED = true
 hl.device({ ["name"] = v.Touchpad_Device, ["enabled"] = v.TOUCHPAD_ENABLED })
-

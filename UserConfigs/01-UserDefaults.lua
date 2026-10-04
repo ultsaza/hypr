@@ -1,4 +1,4 @@
--- Migrated from UserConfigs/01-UserDefaults.conf; edit this Lua file going forward.
+-- Native Lua configuration: UserConfigs/01-UserDefaults.lua.
 local v = require("variables")
 
 -- /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
@@ -13,7 +13,7 @@ local v = require("variables")
 -- script will take the default EDITOR and nano as fallback
 v.edit = (os.getenv("EDITOR") or "nano")
 
--- These two are for UserKeybinds.conf & Waybar Modules
+-- These two are for UserKeybinds.lua & Waybar Modules
 v.term = "ghostty"
 v.files = "thunar"
 

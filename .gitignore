@@ -4,7 +4,7 @@ wallpaper_effects/.wallpaper_current
 wallpaper_effects/.wallpaper_modified
 wallust/wallust-hyprland.conf
 
-# Local backup copies; intentional *.disable overlays remain tracked
+# Local backup copies (legacy configurations are available in Git history)
 *.bak*
 
 # Isolated branch worktrees

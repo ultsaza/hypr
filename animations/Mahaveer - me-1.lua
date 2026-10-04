@@ -1,4 +1,4 @@
--- Migrated from animations/Mahaveer - me-1.conf; edit this Lua file going forward.
+-- Native Lua configuration: animations/Mahaveer - me-1.lua.
 local v = require("variables")
 
 -- /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
@@ -52,5 +52,4 @@ hl.animation({ ["leaf"] = "workspaces", ["enabled"] = true, ["speed"] = 5, ["bez
 -- animation = workspaces, 1, 7, menu_decel, slidefade 15%
 hl.animation({ ["leaf"] = "specialWorkspace", ["enabled"] = true, ["speed"] = 3, ["bezier"] = "md3_decel", ["style"] = "slidefadevert 15%" })
 hl.animation({ ["leaf"] = "specialWorkspace", ["enabled"] = true, ["speed"] = 3, ["bezier"] = "md3_decel", ["style"] = "slidevert" })
-
 
