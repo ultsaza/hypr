@@ -5,13 +5,10 @@ local v = require("variables")
 
 -- This is a file where you put your own default apps, default search Engine etc
 
--- Set your default editor here uncomment and reboot to take effect.
--- NOTE, this will be automatically uncommented if you select neovim or vim to your default editor
---env = EDITOR,vim #default editor
-
--- Define preferred text editor for the KooL Quick Settings Menu (SUPER SHIFT E)
--- script will take the default EDITOR and nano as fallback
-v.edit = (os.getenv("EDITOR") or "nano")
+-- Default editor for the KooL Quick Settings Menu (SUPER SHIFT E)
+-- and applications launched by Hyprland.
+v.edit = "nvim"
+hl.env("EDITOR", v.edit)
 
 -- These two are for UserKeybinds.lua & Waybar Modules
 v.term = "ghostty"

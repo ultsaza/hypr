@@ -75,13 +75,14 @@ does not hide those warnings or claim a complete warning-free desktop.
 
 ## Tested behavior
 
-The suite retains three foundation assertions and one ordered daily-operation
+The suite has four foundation assertions and one ordered daily-operation
 test. The daily test stops on a failed prerequisite and records each completed
 scenario with real client addresses. State predicates use deadlines rather than
 assuming window mapping or state transitions have completed.
 
 | Input or control | Expected observation |
 | --- | --- |
+| Settings helper and compositor EDITOR | Both select `nvim` as the default editor |
 | Super+Enter | One new mapped Ghostty client, focused by its address |
 | Literal shell typing and Enter | `/tmp/headless-marker` contains exactly `headlessok` |
 | Super+Space twice | Intended client floating true, then false |
@@ -91,6 +92,9 @@ assuming window mapping or state transitions have completed.
 | Super+Q | Intended client disappears; the other clients remain |
 | Explicit config reload, Super+Enter | No config errors and static terminal binding launches/focuses Ghostty |
 | Grim capture of TEST-1 | Successful 1280x720 PNG/PPM; varied, nonblack PPM pixels |
+
+The editor check verifies selection and environment export, not Neovim's UI or
+personal plugins.
 
 Input uses raw evdev events through Wayland's real virtual keyboard protocol and
 a real US XKB keymap with `ctrl:nocaps`. Workspace events use physical keycodes

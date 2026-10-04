@@ -50,6 +50,15 @@ class RuntimeSmoke(unittest.TestCase):
     def test_configuration_has_no_errors(self):
         self.assertEqual(hyprctl("configerrors").strip(), "")
 
+    # Catches a menu fallback or missing EDITOR export despite choosing Neovim.
+    def test_neovim_is_selected_by_settings_helper_and_session(self):
+        helper = Path.home() / ".config/hypr/scripts/HyprSettings.py"
+        editor = subprocess.check_output(
+            [sys.executable, str(helper), "get", "edit"], text=True, timeout=5
+        ).strip()
+        self.assertEqual(editor, "nvim")
+        self.assertEqual(hyprctl("repl", 'return os.getenv("EDITOR")').strip(), "nvim")
+
     # Catches a virtual keyboard with synthesized keymaps that miss code:11,
     # a missing input delivery path, or a lost production workspace binding.
     def test_raw_evdev_workspace_key_reaches_compositor(self):
