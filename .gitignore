@@ -6,3 +6,6 @@ wallust/wallust-hyprland.conf
 
 # Local backup copies; intentional *.disable overlays remain tracked
 *.bak*
+
+# Isolated branch worktrees
+/.worktrees/
