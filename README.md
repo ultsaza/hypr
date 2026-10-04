@@ -14,12 +14,12 @@ Edit `.lua` files for Hyprland settings. The remaining `.conf` files belong to H
 
 ## Validation
 
-With Hyprland installed, run from the repository root:
+With local Docker and a compatible accessible DRM render node, run from the repository root:
 
 ```sh
-python3 -B -m unittest discover -s tests -v
+bash tests/headless/run.sh
 ```
 
-This checks the Lua configuration, presets, and update guards without starting a desktop session.
+This starts an isolated Hyprland 0.56.2 session and tests real Ghostty and keyboard operations. Failures return nonzero; logs and screenshots are retained. See [test coverage and prerequisites](tests/README.md).
 
 This is not a complete desktop installer; external apps and settings are required. Review upstream changes before applying them. See the [migration notes](docs/lua-migration.md) for details.

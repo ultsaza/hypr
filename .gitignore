@@ -9,3 +9,7 @@ wallust/wallust-hyprland.conf
 
 # Isolated branch worktrees
 /.worktrees/
+
+# Isolated headless runtime diagnostics
+/tests/headless/artifacts/
+/tests/headless/__pycache__/
