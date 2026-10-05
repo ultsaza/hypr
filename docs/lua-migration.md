@@ -82,12 +82,12 @@ Hypridle・Hyprlock・デスクトップポータルなど、別ツールの設�
 
 この作業のスナップショット・比較データ・ステージング・検証コードは次にある。
 
-`/home/ultsaza/.local/state/hypr-lua-migration.Wgq0waj8`
+`$HOME/.local/state/hypr-lua-migration.Wgq0waj8`
 
 配置済みファイルは `deployment.json`、元ファイルは `backup/`。復帰には次を実行してから再ログインする（表示不能の場合はTTYから実行）。
 
 ```sh
-python3 /home/ultsaza/.local/state/hypr-lua-migration.Wgq0waj8/deploy.py --rollback
+python3 "$HOME/.local/state/hypr-lua-migration.Wgq0waj8/deploy.py" --rollback
 ```
 
 復帰時は変更後のファイルも別フォルダーへ退避してから元に戻す。関連ツールのユーザーラッパーも対象とし、システム版ツールは削除しない。
