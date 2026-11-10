@@ -19,3 +19,7 @@ hl.window_rule({ ["workspace"] = "7", ["match"] = { ["tag"] = "im*" } })
 hl.window_rule({ ["workspace"] = "7", ["match"] = { ["class"] = "^([Ww]aydroid.*)$" } })
 hl.window_rule({ ["workspace"] = "8", ["match"] = { ["tag"] = "games*" } })
 hl.window_rule({ ["workspace"] = "9 silent", ["match"] = { ["tag"] = "multimedia*" } })
+
+-- Keep both Whonix research VM windows together on workspace 3.
+hl.window_rule({ ["workspace"] = "3", ["match"] = { ["class"] = "^(qemu)$", ["title"] = "^QEMU \\(GATEWAY - Tor connection only - leave running\\).*$" } })
+hl.window_rule({ ["workspace"] = "3", ["match"] = { ["class"] = "^(qemu)$", ["title"] = "^QEMU \\(WORKSTATION - browse here - isolated\\).*$" } })
