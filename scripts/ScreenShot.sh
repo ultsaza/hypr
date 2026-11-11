@@ -41,14 +41,15 @@ notify_view() {
         fi
 
     elif [[ "$1" == "swappy" ]]; then
+		local check_file="${dir}/${file}"
 		"${sDIR}/Sounds.sh" --screenshot
-		resp=$(timeout 5 ${notify_cmd_shot} " Screenshot:" " Captured by Swappy")
+		resp=$(timeout 5 ${notify_cmd_shot} " Screenshot:" " Saved")
 		case "$resp" in
 			action1)
-				swappy -f - <"$tmpfile"
+				swappy -f "$check_file"
 				;;
 			action2)
-				rm "$tmpfile"
+				rm "$check_file"
 				;;
 		esac
 
@@ -130,14 +131,22 @@ shotactive() {
 }
 
 shotswappy() {
-	tmpfile=$(mktemp)
-	grim -g "$(slurp)" - >"$tmpfile" 
+	local geometry tmpfile
+	geometry=$(slurp) || return
+	[[ -n "$geometry" ]] || return
+	tmpfile=$(mktemp) || return
+	if ! grim -g "$geometry" - >"$tmpfile" || [[ ! -s "$tmpfile" ]]; then
+		rm -f "$tmpfile"
+		return 1
+	fi
 
-  # Copy without saving
-  if [[ -s "$tmpfile" ]]; then
-		wl-copy <"$tmpfile"
-    notify_view "swappy"
-  fi
+	# Save before copying and opening the notification.
+	if ! mv "$tmpfile" "$dir/$file"; then
+		rm -f "$tmpfile"
+		return 1
+	fi
+	wl-copy <"$dir/$file"
+	notify_view "swappy"
 }
 
 if [[ ! -d "$dir" ]]; then
